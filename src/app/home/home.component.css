@@ -1,0 +1,5 @@
+.owl-theme .owl-nav [class*=owl-]{
+    background-color: white;
+    border-radius: 50%;
+}
+

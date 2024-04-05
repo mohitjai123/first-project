@@ -1,0 +1,15 @@
+<p class="mt-60 text-black text-xl text-center">Liked Place</p>
+<p class="mt-60 text-black text-xl text-center">Liked Place</p>
+<p class="mt-60 text-black text-xl text-center">Liked Place</p>
+<div class="mx-auto w-fit">
+    <app-dialog></app-dialog>
+</div>
+<div class="flex gap-5 justify-center my-5 mx-auto flex-wrap">
+    @for (slide of likedPlace; track slide.id){
+        <app-housing-locatin  [houseingLocation]="slide"></app-housing-locatin>
+    }@empty{
+        <div class="text-center w-5/6 border border-red-500 py-2 px-5 rounded-lg text-red-500">
+            No Liked Place Added
+        </div>
+    }
+</div>

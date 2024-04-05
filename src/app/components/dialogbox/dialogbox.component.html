@@ -1,0 +1,25 @@
+<div class="bg-white text-red-500">
+    <h2 mat-dialog-title style="color: red;">Hi {{data.name}}</h2>
+    <mat-dialog-content style="color: red;">
+        <p>What's your favorite house?</p>
+        <form class="example-form">
+            <mat-form-field>
+                <mat-label>Favorite house</mat-label>
+                <input type="text" placeholder="Pick one" aria-label="Place" matInput [formControl]="myControl"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    @for (option of filteredOptions | async; track option) {
+                    <mat-option [value]="option.id">{{option.name}}</mat-option>
+                    }
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button style="background-color: whitesmoke; color: red;" (click)="onNoClick()">No Thanks</button>
+        <a style="background-color: red;" [routerLink]="[myControl.value && '/details/',myControl.value]" mat-button [mat-dialog-close]="data.animal"
+            cdkFocusInitial>Ok</a>
+    </mat-dialog-actions>
+
+</div>

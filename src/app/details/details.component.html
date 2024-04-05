@@ -1,0 +1,35 @@
+<section style="margin-top: 100px;" class="w-5/6 mx-auto">
+  <img class="listing-photo" [src]="housingLocation?.photo" alt="Exterior photo of {{housingLocation?.name}}" />
+  <div>
+    <section class="listing-description">
+      <mat-button-toggle-group  #group="matButtonToggleGroup" name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle value="font-extrabold">Bold</mat-button-toggle>
+        <mat-button-toggle value="italic">Italic</mat-button-toggle>
+        <mat-button-toggle value="underline">Underline</mat-button-toggle>
+      </mat-button-toggle-group>
+      <h5 [ngStyle]="{'text-decoration': (group.value=='underline') && 'underline'}" class="listing-heading text-red-500">{{housingLocation?.name}}</h5>
+      <p class="listing-location text-slate-400">{{housingLocation?.city}}, {{housingLocation?.state}}</p>
+    </section>
+    <section class="listing-features">
+      <h2 class="section-heading">About this housing location</h2>
+      <ul>
+        <li>Units available: {{housingLocation?.availableUnit}}</li>
+        <li>Does this location have wifi: {{housingLocation?.wifi ? "Yes" : "No"}}</li>
+      </ul>
+    </section>
+    <section class="listing-apply">
+      <h2 class="section-heading">Book now to live here</h2>
+      <form [formGroup]="applyForm" (submit)="submitApplication()">
+        <label for="first-name">First Name</label>
+        <input id="first-name" type="text" formControlName="firstName">
+
+        <label for="last-name">Last Name</label>
+        <input id="last-name" type="text" formControlName="lastName">
+
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email">
+        <button type="submit" class="text-white bg-red-500 rounded px-4 py-2 my-5">Apply now</button>
+      </form>
+    </section>
+  </div>
+</section>
