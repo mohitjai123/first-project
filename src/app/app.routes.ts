@@ -1,14 +1,22 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { FirstComponentComponent } from './first-component/first-component.component';
+import { FooterComponent } from './footer/footer.component';
+import { AuthGuard } from './services/auth.guard';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
     {
         path: '',
+        canActivate:[AuthGuard],
         component: HomeComponent,
         title: 'Home page'
+      },
+      {
+        path:'login',
+        component:LoginComponent,
+        title:"Login Page"
       },
       {
         path: 'details/:id',

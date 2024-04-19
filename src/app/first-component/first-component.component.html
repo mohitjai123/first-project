@@ -5,7 +5,7 @@
     <app-dialog></app-dialog>
 </div>
 <div class="flex gap-5 justify-center my-5 mx-auto flex-wrap">
-    @for (slide of likedPlace; track slide.id){
+    @for (slide of likedPlace; track slide._id){
         <app-housing-locatin  [houseingLocation]="slide"></app-housing-locatin>
     }@empty{
         <div class="text-center w-5/6 border border-red-500 py-2 px-5 rounded-lg text-red-500">

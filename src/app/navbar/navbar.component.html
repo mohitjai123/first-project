@@ -4,6 +4,7 @@
         <mat-icon>menu</mat-icon>
     </button>
     <a routerLink="/">My App</a>
+    <button *ngIf="isLogin" (click)="logOut()">Logout</button>
     <span class="example-spacer"></span>
     <a routerLink="/liked-place" [matBadge]="likedplace.length" mat-icon-button class="example-icon favorite-icon"
         aria-label="Example icon-button with heart icon">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { RouterModule } from '@angular/router';
@@ -14,4 +14,11 @@ import { FooterComponent } from './footer/footer.component';
 })
 export class AppComponent {
   title = 'Simple Project';
+  constructor(private distroyRef:DestroyRef){
+    distroyRef.onDestroy(()=>{
+      console.log("destroy component");
+      
+    })
+  }
+
 }

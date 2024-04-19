@@ -26,9 +26,13 @@ export class DetailsComponent {
   
   constructor() {
       const housingLocationId = String(this.route.snapshot.params['id']);
-      this.housingLocation = this.housingService.getHousingLocationById(housingLocationId);      
+      this.housingService.getHousingLocationById(housingLocationId)?.subscribe(res=>
+        this.housingLocation = res
+      );      
   }
-
+  ngOnInit():void{
+    this.housingService.getClientResponse().subscribe(res=>console.log(res))
+  }
   setValue(e:any){
     console.log(e.target.value);
   }
@@ -37,6 +41,6 @@ export class DetailsComponent {
       this.applyForm.value.firstName ?? '',
       this.applyForm.value.lastName ?? '',
       this.applyForm.value.email ?? ''
-    );
+    ).subscribe(res=>console.log(res))
   }
 }

@@ -1,5 +1,5 @@
 export interface HouseingLocation {
-    id:string,
+    _id:string,
     name: string,
     city: string,
     state: string,

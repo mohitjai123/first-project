@@ -4,20 +4,20 @@ import { HousingService } from '../housing.service';
 import { HouseingLocation } from '../houseing-location';
 import { CommonModule } from '@angular/common';
 import { HousingLocatinComponent } from '../housing-locatin/housing-locatin.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, CarouselModule, HousingLocatinComponent],
+  imports: [CommonModule, CarouselModule, FormsModule, HousingLocatinComponent],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
   filteredLocationList = signal<HouseingLocation[]>([]);
   constructor(private housingService: HousingService) {
-    this.filteredLocationList.set(this.housingService.getAllHousingLocations());
+    this.housingService.getAllHousingLocations().subscribe((res:any)=>this.filteredLocationList.set(res));
   }
-
   customOptions: OwlOptions = {
     loop: false,
     mouseDrag: false,
@@ -43,4 +43,5 @@ export class FooterComponent {
     },
     nav: true
   }
+
 }

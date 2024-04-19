@@ -1,7 +1,7 @@
-<owl-carousel-o [options]="customOptions">
+<owl-carousel-o class="mt-5" [options]="customOptions">
     <ng-container *ngFor="let slide of filteredLocationList()">
-      <ng-template carouselSlide [id]="slide.id">
-        <app-housing-locatin [houseingLocation]="slide"></app-housing-locatin>
+      <ng-template carouselSlide [id]="slide._id">
+        <app-housing-locatin [home]="false" [houseingLocation]="slide"></app-housing-locatin>
       </ng-template>
     </ng-container>
   </owl-carousel-o>

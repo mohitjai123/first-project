@@ -9,7 +9,7 @@
                     [matAutocomplete]="auto">
                 <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                     @for (option of filteredOptions | async; track option) {
-                    <mat-option [value]="option.id">{{option.name}}</mat-option>
+                    <mat-option [value]="option._id">{{option.name}}</mat-option>
                     }
                 </mat-autocomplete>
             </mat-form-field>

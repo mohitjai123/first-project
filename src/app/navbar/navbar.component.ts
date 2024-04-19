@@ -4,7 +4,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatBadgeModule} from '@angular/material/badge';
 import { HousingService } from '../housing.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { HouseingLocation } from '../houseing-location';
 import { CommonModule } from '@angular/common';
 
@@ -17,13 +17,19 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   likedplace:HouseingLocation[] = [];
-  constructor(private service:HousingService){
+  isLogin = false;
+  constructor(private service:HousingService, private route:Router){
   }
   ngOnInit():void{
+    this.isLogin = this.service.checkStatus();
     this.likedplace = this.service.getLikedPlace();
   }
   sidenav = false;
   handelSideNav(){
     this.sidenav= !this.sidenav;
+  }
+  logOut(){
+    localStorage.clear();
+    this.route.navigate(['/login'])
   }
 }

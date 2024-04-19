@@ -3,10 +3,13 @@ import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FirstComponentComponent } from './first-component/first-component.component';
+import { AuthGuard } from './services/auth.guard';
+import { LoginComponent } from './components/login/login.component';
 
 const routeConfig: Routes = [
     {
       path: '',
+      canActivate:[AuthGuard],
       component: HomeComponent,
       title: 'Home page'
     },
@@ -16,9 +19,9 @@ const routeConfig: Routes = [
       title: 'Home details'
     },
     {
-      path: 'navbar',
-      component: NavbarComponent,
-      title: 'Navbar'
+      path: 'login',
+      component: LoginComponent,
+      title: 'Login Page'
     },
     {
       path: 'liked-place',
