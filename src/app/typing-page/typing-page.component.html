@@ -1,0 +1,19 @@
+<div class="w-5/6 mt-20 relative mx-auto">
+    <div class=" w-5/6 mx-auto flex justify-between">
+        
+    <p id="typString" class="text-red-500 text-xl" ></p>
+    <p id="speed" class="text-green-500 text-xl"></p>
+    </div>
+    <button id="input" class="flex text-justify cursor-default outline-none mb-5 border rounded-md p-5 shadow-md w-5/6 mx-auto text-2xl relative flex-wrap">
+        @for(word of value.split(" "); track $index){
+            <div class="inline-block">
+                @for(char of $index==value.split(" ").length-1 ? word.split("") : word+" ".split(""); track $index){
+                    <span class="relative">{{char}}</span>
+                }
+            </div>
+        }
+        <span class="opacity-0 hidden">end</span>
+    </button>
+    <app-keyboard></app-keyboard>
+
+</div>

@@ -5,6 +5,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FirstComponentComponent } from './first-component/first-component.component';
 import { AuthGuard } from './services/auth.guard';
 import { LoginComponent } from './components/login/login.component';
+import { TypingPageComponent } from './typing-page/typing-page.component';
 
 const routeConfig: Routes = [
     {
@@ -28,6 +29,11 @@ const routeConfig: Routes = [
       component: FirstComponentComponent,
       title: 'Liked Place'
     },
+    {
+      path:"typing-page",
+      component:TypingPageComponent,
+      title:"Typing Test"
+    }
 
   ];
   

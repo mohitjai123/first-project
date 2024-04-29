@@ -17,7 +17,6 @@ export class AppComponent {
   constructor(private distroyRef:DestroyRef){
     distroyRef.onDestroy(()=>{
       console.log("destroy component");
-      
     })
   }
 

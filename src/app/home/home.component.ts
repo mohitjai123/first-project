@@ -1,13 +1,14 @@
-import { Component, HostListener, NgModule, WritableSignal, effect, inject, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HousingService } from '../housing.service';
 import { HouseingLocation } from '../houseing-location';
 
-import { CarouselModule, OwlOptions } from "ngx-owl-carousel-o"
+import { CarouselModule} from "ngx-owl-carousel-o"
 import { HousingLocatinComponent } from '../housing-locatin/housing-locatin.component';
 import { RouterLink } from '@angular/router';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { FullImageComponent } from '../components/full-image/full-image.component';
+import { File } from 'buffer';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -33,11 +34,17 @@ export class HomeComponent {
     
   }
 
+  handleImage(e:any){
+      this.updateData().photo = e.target.files[0]
+  }
+
   ngOnInit():void{
     this.getHousingData();
   }
   getHousingData(){
       this.housingService.getAllHousingLocations().subscribe(res=>{
+        console.log(res);
+        
       this.housingLocationList = res
       this.filteredLocationList.set(this.housingLocationList);
       this.likedPlace = this.housingService.getLikedPlace();

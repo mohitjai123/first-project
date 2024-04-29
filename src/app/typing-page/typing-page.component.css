@@ -1,0 +1,27 @@
+.input-pulse{
+    animation: pulse 0.5s infinite linear;
+}
+.green-text{
+    background-color: rgba(19, 231, 19, 0.15);
+    color:rgb(32, 218, 57);
+}
+.red-text{
+    background-color: rgba(255, 0, 0, 0.15);
+    color:red;
+}
+
+span{
+    white-space: pre-wrap;
+    line-height: 1.33;
+}
+@keyframes pulse {
+    0%{
+        opacity: 0%;
+    }
+    50%{
+        opacity: 100%;
+    }
+    100%{
+        opacity: 0%;
+    }
+}

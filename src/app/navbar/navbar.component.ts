@@ -17,11 +17,9 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   likedplace:HouseingLocation[] = [];
-  isLogin = false;
-  constructor(private service:HousingService, private route:Router){
+  constructor(public service:HousingService, private route:Router){
   }
   ngOnInit():void{
-    this.isLogin = this.service.checkStatus();
     this.likedplace = this.service.getLikedPlace();
   }
   sidenav = false;

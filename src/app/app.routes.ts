@@ -5,6 +5,7 @@ import { FirstComponentComponent } from './first-component/first-component.compo
 import { FooterComponent } from './footer/footer.component';
 import { AuthGuard } from './services/auth.guard';
 import { LoginComponent } from './components/login/login.component';
+import { TypingPageComponent } from './typing-page/typing-page.component';
 
 export const routes: Routes = [
     {
@@ -28,4 +29,9 @@ export const routes: Routes = [
         component: FirstComponentComponent,
         title: 'Liked Place'
       },
+      {
+        path:"typing-page",
+        component:TypingPageComponent,
+        title:"Typing Test"
+      }
 ];

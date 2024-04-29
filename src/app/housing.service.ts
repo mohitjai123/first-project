@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
-
+import { File } from 'buffer';
 @Injectable({
   providedIn: 'root',
 })
@@ -46,7 +46,7 @@ export class HousingService {
   updateDataDetails = {
     data:signal({
       name:"",
-      photo:"",
+      photo:'',
       city:"",
       state:"",
       wifi:false,
@@ -76,8 +76,16 @@ const data = this.http.get<HouseingLocation[]>(`${environment.apiUrl}/housing`)
 }
 
  createHousing(data:any){
-  const token =localStorage.getItem("t");
-  return this.http.post(`${environment.apiUrl}/housing`, data, {headers:{
+  console.log(data);
+  const formData = new FormData();
+  formData.append("name", data.name)
+  formData.append("city", data.city)
+  formData.append("state", data.state)
+  formData.append("availableUnit", data.availableUnit)
+  formData.append("wifi", data.wifi)
+  formData.append("photo", data.photo);
+  const token =localStorage.getItem("t"); 
+  return this.http.post(`${environment.apiUrl}/housing`, formData, {headers:{
     'token':`${token}`
   }})
  }

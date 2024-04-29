@@ -2,12 +2,7 @@
   <img class="listing-photo" [src]="housingLocation?.photo" alt="Exterior photo of {{housingLocation?.name}}" />
   <div>
     <section class="listing-description">
-      <mat-button-toggle-group  #group="matButtonToggleGroup" name="fontStyle" aria-label="Font Style">
-        <mat-button-toggle value="font-extrabold">Bold</mat-button-toggle>
-        <mat-button-toggle value="italic">Italic</mat-button-toggle>
-        <mat-button-toggle value="underline">Underline</mat-button-toggle>
-      </mat-button-toggle-group>
-      <h5 [ngStyle]="{'text-decoration': (group.value=='underline') && 'underline'}" class="listing-heading text-red-500">{{housingLocation?.name}}</h5>
+      <h5 class="listing-heading font-extrabold text-red-500">{{housingLocation?.name}}</h5>
       <p class="listing-location text-slate-400">{{housingLocation?.city}}, {{housingLocation?.state}}</p>
     </section>
     <section class="listing-features">

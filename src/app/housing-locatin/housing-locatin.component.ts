@@ -12,7 +12,7 @@ import { HousingService } from '../housing.service';
   imports: [CommonModule, RouterLink, MatIconButton, MatIcon],
   template: `
   <section class="flex flex-col bg-red-50 mx-auto w-60 overflow-hidden h-96 relative rounded-xl border ">
-    <img class="rounded-t w-full h-[180px] " [src]="houseingLocation.photo" alt="Exterior photo of {{houseingLocation.name}}"/>
+    <img [ngClass]=" home ? 'h-[170px]' : 'rounded-t h-[250px] w-full' " [src]="houseingLocation.photo" alt="Exterior photo of {{houseingLocation.name}}"/>
     <p class="text-xl py-1 mt-5 text-red-500 text-center w-full">{{houseingLocation.name}}</p>
    <div class="flex items-center justify-center">
    <p class=" py-1 text-center">{{ houseingLocation.city}}, {{houseingLocation.state }}</p> 

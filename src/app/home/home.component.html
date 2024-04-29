@@ -18,8 +18,8 @@
         class="border w-fit h-fit shadow-inner rounded py-1 px-2 mx-3" type="text" placeholder="Enter state">
       <input name="availabelUnit" #availbelUnit="ngModel" [(ngModel)]="updateData().availableUnit"
         class="border w-fit h-fit shadow-inner rounded py-1 px-2 mx-3" type="number" placeholder="Enter availabel unit">
-      <input name="photo" #photo="ngModel" [(ngModel)]="updateData().photo"
-        class="border bg-white w-52 my-2 accent-red-500 h-fit shadow-inner rounded py-1 px-2 mx-3" type="text">
+      <input name="photo" (change)="handleImage($event)"
+        class="border bg-white w-52 my-2 accent-red-500 h-fit shadow-inner rounded py-1 px-2 mx-3" type="file">
 
       <label for="" class="text-slate-600">Is wi-fi availabel</label> <input type="checkbox" name="wi-fi" id=""
         #wi_fi="ngModel" name="wi_fi" [(ngModel)]="updateData().wifi" class="mx-2 accent-red-500">
