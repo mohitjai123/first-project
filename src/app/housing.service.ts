@@ -1,4 +1,4 @@
-import { Inject, Injectable, signal } from '@angular/core';
+import { Inject, Injectable, afterNextRender, signal } from '@angular/core';
 import { HouseingLocation } from './houseing-location';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
@@ -10,37 +10,13 @@ import { File } from 'buffer';
 })
 export class HousingService {
   readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
-  constructor(private http:HttpClient, @Inject(DOCUMENT) private documentMy:Document) { }
+  constructor(private http:HttpClient, @Inject(DOCUMENT) private documentMy:Document) {
+    afterNextRender(()=>
+      this.likedPlace = localStorage.getItem('like-place')
+    ) 
+  }
   housingLocationList: HouseingLocation[] = [];
-  likedPlace = signal<HouseingLocation[]>([
-    {
-      _id: "7",
-      name: 'Hopeful Housing Solutions',
-      city: 'Oakland',
-      state: 'CA',
-      photo: `${this.baseUrl}/r-architecture-GGupkreKwxA-unsplash.jpg`,
-      availableUnit: 2,
-      wifi: true,
-    },
-    {
-      _id: "8",
-      name: 'Seriously Safe Towns',
-      city: 'Oakland',
-      state: 'CA',
-      photo: `${this.baseUrl}/saru-robert-9rP3mxf8qWI-unsplash.jpg`,
-      availableUnit: 10,
-      wifi: false,
-    },
-    {
-      _id: "9",
-      name: 'Capital Safe Towns',
-      city: 'Portland',
-      state: 'OR',
-      photo: `${this.baseUrl}/webaliser-_TPTXZd9mOo-unsplash.jpg`,
-      availableUnit: 6,
-      wifi: true,
-    }
-  ]);
+  likedPlace:any = signal('');
 
 
   updateDataDetails = {
@@ -50,17 +26,18 @@ export class HousingService {
       city:"",
       state:"",
       wifi:false,
-      availableUnit: 0
+      description: ""
     }),
     edit:false,
     id:""
   }
  
   public addLikedPlace(id:string){
-    const idx = this.likedPlace().findIndex((item)=>item?._id ==id)
+    const idx = this.likedPlace().findIndex((item:any)=>item?._id ==id)
     const index = this.housingLocationList.findIndex((item)=>item._id==id);  
     if(idx==-1){
       this.likedPlace().push(this.housingLocationList[index]);
+      localStorage.setItem("like-place", `${this.likedPlace()}`)
     }
     else {
       this.likedPlace().splice(idx, 1);
@@ -81,13 +58,19 @@ const data = this.http.get<HouseingLocation[]>(`${environment.apiUrl}/housing`)
   formData.append("name", data.name)
   formData.append("city", data.city)
   formData.append("state", data.state)
-  formData.append("availableUnit", data.availableUnit)
+  formData.append("description", data.description)
   formData.append("wifi", data.wifi)
-  formData.append("photo", data.photo);
+  formData.append('photo', data.photo)
   const token =localStorage.getItem("t"); 
   return this.http.post(`${environment.apiUrl}/housing`, formData, {headers:{
     'token':`${token}`
   }})
+ }
+
+ uploadImage(data:any){
+  console.log(data);
+  
+  return this.http.post(`${environment.apiUrl}/housing/upload`, data)
  }
 
 getHousingLocationById(id: string): Observable<HouseingLocation>| undefined {

@@ -4,6 +4,6 @@ export interface HouseingLocation {
     city: string,
     state: string,
     photo: string,
-    availableUnit: number,
+    description: string,
     wifi: boolean,
 }

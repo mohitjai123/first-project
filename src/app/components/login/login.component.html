@@ -5,7 +5,30 @@
     <div>
         <input class="text-red-500 border w-full border-red-500 py-2 shadow-sm hover:bg-red-500 hover:text-white duration-200 " type="submit"> <span *ngIf="loading">. . .</span>
     </div>
+    <button (click)="popUp=!popUp" type="button">Open Popup</button>
     <p *ngIf="message.status" class="py-3 {{message.type ? 'border-green-500 text-green-500':'border-red-500 text-red-500'}} px-10 border rounded-md ">{{message.status}}</p>
   </form>
+
+  <div *ngIf="popUp" class="fixed backdrop-blur-sm animate-popup duration-100 bg-gray-500/30 h-full flex justify-center items-center w-full top-0 z-10">
+    <form class="w-96 shadow-box bg-white m-auto gap-4 relative grid p-10 py-5" action="">
+    <button class="border border-red-500 hover:bg-red-500 duration-200 rounded-full h-5 w-5 text-xl hover:text-white absolute text-red-500 bg-white -right-2 -top-2 flex items-center justify-center text-center" (click)="popUp=!popUp" type="button">X</button>
+        <h2 class="text-red-500 text-center">Log In</h2>
+        <div class="grid">
+            <label for="">Email</label>
+            <input class="border focus:shadow-md outline-none shadow-inner py-2 px-4 border-red-500" type="email">
+        </div>
+        <div class="grid">
+            <label class="flex justify-between" for=""><span>Password</span> <a class="underline text-red-500" href="">Forget your password</a></label>
+            <input class="border focus:shadow-md outline-none shadow-inner py-2 px-4 border-red-500" type="password">
+        </div>
+        <input class="border bg-red-500 hover:shadow-md text-white outline-none shadow-inner py-2 px-4 border-red-500" type="submit" value="Login">
+        <div class="flex justify-center gap-8">
+            <div class="h-10 w-10 border border-red-300"></div>
+            <div class="h-10 w-10 border border-red-300"></div>
+            <div class="h-10 w-10 border border-red-300"></div>
+        </div>
+        <p class="text-center">Don't have an account? <a class="underline text-red-500" href="">Sign Up</a></p>
+    </form>
+  </div>
 
   <app-keyboard></app-keyboard>

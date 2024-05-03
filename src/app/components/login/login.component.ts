@@ -13,6 +13,7 @@ import { KeyboardComponent } from '../keyboard/keyboard.component';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  popUp:boolean=false;
   loading = false
   loginData = {email:"", password:""}
   message = {type:false, status:""}

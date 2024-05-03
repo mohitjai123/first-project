@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HousingService } from '../housing.service';
 import { HouseingLocation } from '../houseing-location';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -15,6 +16,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
   styleUrl: './details.component.css'
 })
 export class DetailsComponent {
+  api = environment.apiUrl+"/uploads/"
   route: ActivatedRoute = inject(ActivatedRoute);
   housingService = inject(HousingService);
   housingLocation: HouseingLocation | undefined;

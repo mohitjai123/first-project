@@ -16,12 +16,11 @@
         class="border w-fit h-fit shadow-inner rounded py-1 px-2 mx-3" type="text" placeholder="Enter city">
       <input name="state" #state="ngModel" [(ngModel)]="updateData().state"
         class="border w-fit h-fit shadow-inner rounded py-1 px-2 mx-3" type="text" placeholder="Enter state">
-      <input name="availabelUnit" #availbelUnit="ngModel" [(ngModel)]="updateData().availableUnit"
-        class="border w-fit h-fit shadow-inner rounded py-1 px-2 mx-3" type="number" placeholder="Enter availabel unit">
+      <input name="availabelUnit" #availbelUnit="ngModel" [(ngModel)]="updateData().description"
+        class="border w-fit h-fit shadow-inner rounded py-1 px-2 mx-3" type="text" placeholder="Enter Description">
       <input name="photo" (change)="handleImage($event)"
         class="border bg-white w-52 my-2 accent-red-500 h-fit shadow-inner rounded py-1 px-2 mx-3" type="file">
-
-      <label for="" class="text-slate-600">Is wi-fi availabel</label> <input type="checkbox" name="wi-fi" id=""
+    <label for="" class="text-slate-600">Is wi-fi availabel</label> <input type="checkbox" name="wi-fi" id=""
         #wi_fi="ngModel" name="wi_fi" [(ngModel)]="updateData().wifi" class="mx-2 accent-red-500">
       <input type="submit" (click)="handleAddData()"
         class="text-white bg-red-500 shadow-md rounded py-2 px-4 mx-auto my-2 w-fit" [value]="housingService.updateDataDetails.edit ? 'Update' : 'Add'">    </form>
