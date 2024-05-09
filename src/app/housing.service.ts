@@ -1,4 +1,4 @@
-import { Inject, Injectable, afterNextRender, signal } from '@angular/core';
+import { Inject, Injectable, WritableSignal, afterNextRender, signal } from '@angular/core';
 import { HouseingLocation } from './houseing-location';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
@@ -10,14 +10,27 @@ import { File } from 'buffer';
 })
 export class HousingService {
   readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
+  likedPlace:WritableSignal<HouseingLocation[]> = signal([]);
   constructor(private http:HttpClient, @Inject(DOCUMENT) private documentMy:Document) {
+    this.getAllHousingLocations().subscribe(res=>this.housingLocationList=res);
     afterNextRender(()=>
-      this.likedPlace = localStorage.getItem('like-place')
+      {
+        const data = localStorage.getItem("like-place")
+        if(data)
+        this.likedPlace.set(JSON.parse(data)) 
+      }
     ) 
   }
   housingLocationList: HouseingLocation[] = [];
-  likedPlace:any = signal('');
-
+  full = signal(false);
+  detailsPage = signal({
+    _id:"",
+  name:"",
+  photo:'',
+  city:"",
+  state:"",
+  wifi:false,
+  description: ""})
 
   updateDataDetails = {
     data:signal({
@@ -34,18 +47,16 @@ export class HousingService {
  
   public addLikedPlace(id:string){
     const idx = this.likedPlace().findIndex((item:any)=>item?._id ==id)
-    const index = this.housingLocationList.findIndex((item)=>item._id==id);  
+    const data = this.housingLocationList.find((item)=>item._id==id);
     if(idx==-1){
-      this.likedPlace().push(this.housingLocationList[index]);
-      localStorage.setItem("like-place", `${this.likedPlace()}`)
-    }
-    else {
-      this.likedPlace().splice(idx, 1);
-    }
- }
-  getLikedPlace(){
-    return this.likedPlace();
+      if(data)
+      this.likedPlace().push(data);
   }
+  else {
+    this.likedPlace().splice(idx, 1);
+  }
+  localStorage.setItem("like-place", JSON.stringify(this.likedPlace()))
+ }
  getAllHousingLocations(): Observable<HouseingLocation[]> {
 const data = this.http.get<HouseingLocation[]>(`${environment.apiUrl}/housing`)
   data.subscribe(res=>this.housingLocationList = res);
@@ -87,7 +98,14 @@ deleteHousingLocation(id:any){
 }
 
 updateHousingLocation(id:any, data:any){
-  return this.http.put(`${environment.apiUrl}/housing/${id}`, data);
+  const formData = new FormData();
+  formData.append("name", data.name)
+  formData.append("city", data.city)
+  formData.append("state", data.state)
+  formData.append("description", data.description)
+  formData.append("wifi", data.wifi)
+  formData.append('photo', data.photo)
+  return this.http.put(`${environment.apiUrl}/housing/${id}`, formData);
 }
 
 loginAdmin(data:any){

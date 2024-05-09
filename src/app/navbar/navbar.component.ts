@@ -16,18 +16,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  likedplace:HouseingLocation[] = [];
-  constructor(public service:HousingService, private route:Router){
-  }
-  ngOnInit():void{
-    this.likedplace = this.service.getLikedPlace();
-  }
+  likedplace = this.service.likedPlace;
+  constructor(public service:HousingService, private route:Router){}
   sidenav = false;
   handelSideNav(){
     this.sidenav= !this.sidenav;
   }
   logOut(){
     localStorage.clear();
-    this.route.navigate(['/login'])
+    this.route.navigate(['/'])
   }
 }

@@ -19,12 +19,14 @@ export class FooterComponent {
     this.housingService.getAllHousingLocations().subscribe((res:any)=>this.filteredLocationList.set(res));
   }
   customOptions: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
+    autoplay:true,
     dots: true,
-    navSpeed: 700,
+    autoplaySpeed:1000,
+    navSpeed: 1000,
     navText: ['<div class="bg-red-500 flex items-center justify-center text-3xl hover:bg-red-700 absolute left-8 top-[50%] h-10 w-10 rounded-full"> « </div>', 
     '<div class="bg-red-500 absolute right-4 hover:bg-red-700 top-[50%] flex items-center justify-center text-3xl p-2 h-10 w-10 rounded-full"> »</div>'],
     responsive: {

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HouseingLocation } from '../houseing-location';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { HousingService } from '../housing.service';
@@ -29,10 +29,11 @@ import { environment } from '../../environments/environment';
    <button class="border border-red-500 rounded-md w-32 h-fit text-center py-1 mx-auto text-red-500 hover:bg-red-500 duration-150 hover:text-white " (click)="deleteLocation(houseingLocation._id)">Delete
     <span *ngIf="loading">. . .</span>
   </button>
-   <a [routerLink]="['/details', houseingLocation._id]" class="bg-red-500 w-32 text-white px-4 py-1 text-center mx-auto rounded " >Learn more</a>
+<button (click)="handleNavigate(houseingLocation._id)" class="bg-red-500 w-32 text-white px-4 py-1 text-center mx-auto rounded " >Learn more</button>
+
   
-   </div>
-   <a *ngIf="!home" [routerLink]="['/details', houseingLocation._id]" class="bg-red-500 w-32 text-white px-4 py-1 text-center mx-auto rounded " >Learn more</a>
+</div>
+<button *ngIf="!home" (click)="handleNavigate(houseingLocation._id)" class="bg-red-500 w-32 text-white px-4 py-1 text-center mx-auto rounded " >Learn more</button>
 
   </section>
   `,
@@ -46,10 +47,10 @@ export class HousingLocatinComponent {
       message:string = "";
       liked = false
       update = this.service.updateDataDetails.data;
-      constructor(private service:HousingService){}
-      ngOnChanges():void{
-        const likedData = this.service.getLikedPlace();
-        const indx = likedData.findIndex((item:any)=>item._id==this.houseingLocation._id);
+      constructor(private service:HousingService, private route:Router){}
+      ngOnInit():void{
+        const likedData = this.service.likedPlace;
+        const indx = likedData().findIndex((item:any)=>item._id==this.houseingLocation._id);
         if(indx!=-1){
           this.liked = true
         }
@@ -77,10 +78,14 @@ export class HousingLocatinComponent {
           }, 2000);
         }})
       }
+      handleNavigate(id:string){
+        this.service.detailsPage.set(this.houseingLocation);
+        this.route.navigate(['/details', id])
+      }
       handleLikedPlace(id:string){
         this.service.addLikedPlace(id);
-        const likedData = this.service.getLikedPlace();
-        const indx = likedData.findIndex((item:any)=>item._id==this.houseingLocation._id);
+        const likedData = this.service.likedPlace;
+        const indx = likedData().findIndex((item:any)=>item._id==this.houseingLocation._id);
         if(indx!=-1){
           this.liked = true
         }

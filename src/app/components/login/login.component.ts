@@ -31,7 +31,7 @@ export class LoginComponent {
         this.message.type = true
         this.loginData = {email:"", password:""};
         this.loading = false
-        this.route.navigate(['/'])
+        this.route.navigate(['/admin'])
       }, 
       error:(err:any)=>{
         console.log(err);

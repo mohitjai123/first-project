@@ -61,7 +61,7 @@ export class DialogboxComponent {
   filteredOptions!: Observable<HouseingLocation[]>;
 
   ngOnInit() {
-    this.options = this.service.getLikedPlace();
+    this.options = this.service.likedPlace();
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),

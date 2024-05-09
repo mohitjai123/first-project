@@ -6,7 +6,7 @@
     <a routerLink="/">My App</a>
     <span class="example-spacer"></span>
     <button class="mr-5" *ngIf="service.checkStatus()" (click)="logOut()">Logout</button>
-    <a routerLink="/liked-place" [matBadge]="likedplace.length" mat-icon-button class="example-icon favorite-icon"
+    <a routerLink="/liked-place" [matBadge]="likedplace().length" mat-icon-button class="example-icon favorite-icon"
         aria-label="Example icon-button with heart icon">
         <mat-icon>favorite</mat-icon>
     </a>
@@ -15,7 +15,7 @@
     </button>
 </mat-toolbar>
 <div style="background-color: red;" class=" text-white duration-200 top-16 fixed z-50" [ngClass]="sidenav ? '': '-translate-x-64' " >
-    <h1 class="text-center px-20 py-2 rounded-br-lg">
-        Side Nav
-    </h1>
+    <a href="/typing-page" class="text-center px-10 py-6 text-xl rounded-br-lg">
+        Take Typing Test
+    </a>
 </div>

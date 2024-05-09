@@ -17,6 +17,6 @@ export class FirstComponentComponent {
   likedPlace:HouseingLocation[]=[];
    constructor(private service:HousingService){}
    ngOnInit():void{
-   this.likedPlace = this.service.getLikedPlace();
+   this.likedPlace = this.service.likedPlace();
    }
 }

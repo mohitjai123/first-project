@@ -1,4 +1,6 @@
-<div>
-    <img [src]="data.photo" class="h-full w-full absolute -z-10" alt="">
-    <h1 class="w-fit mx-auto rounded-br-2xl bg-white/50 backdrop-blur-md px-10 py-2">{{data.name}}</h1>
+<div class="h-fit relative flex flex-col justify-center items-center">
+    <button class="bg-white rounded-full shadow-md text-red-500 px-3 p-2 w-fit mx-auto" (click)="full.set(false)">X</button>
+    <h1 style="margin: 0;" class="w-full rounded-t-2xl m-0 bg-white text-red-500 text-center py-2">{{data.name}}</h1>
+    <img *ngIf="data.name!='Rajwada Palace'" [src]="apiUrl+data.photo" class="h-4/5 w-full" alt="">
+    <iframe *ngIf="data.name=='Rajwada Palace'" src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sin!4v1715244492418!5m2!1sen!2sin!6m8!1m7!1sSGNTg_9ZRToAAAQfDS0PhQ!2m2!1d22.71854328173026!2d75.85482562672678!3f320.2972049445516!4f21.564389432400546!5f0.4000000000000002" class="mx-auto w-full" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>

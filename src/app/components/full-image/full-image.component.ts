@@ -1,21 +1,19 @@
 import { Component, HostListener, Input } from '@angular/core';
 import { HouseingLocation } from '../../houseing-location';
+import { environment } from '../../../environments/environment';
+import { HousingService } from '../../housing.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-full-image',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './full-image.component.html',
   styleUrl: './full-image.component.css'
 })
 export class FullImageComponent {
+    apiUrl = environment.apiUrl+"/uploads/"
    @Input() data!:HouseingLocation;
-    size = 0;
-    @HostListener("window:scroll", ['$event'])
-    onScroll(){
-      this.size = document.body.getBoundingClientRect().y;
-      console.log(this.size);
-      
-    }
-
+   full = this.service.full;
+   constructor(private service:HousingService){}
 }

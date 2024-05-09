@@ -50,7 +50,7 @@ export class HomeComponent {
         
       this.housingLocationList = res
       this.filteredLocationList.set(this.housingLocationList);
-      this.likedPlace = this.housingService.getLikedPlace();
+      this.likedPlace = this.housingService.likedPlace();
       });
   }
   handleAddData(){

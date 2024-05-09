@@ -6,14 +6,16 @@ import { FirstComponentComponent } from './first-component/first-component.compo
 import { AuthGuard } from './services/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { TypingPageComponent } from './typing-page/typing-page.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 const routeConfig: Routes = [
     {
-      path: '',
+      path: 'admin',
       canActivate:[AuthGuard],
       component: HomeComponent,
-      title: 'Home page'
+      title: 'Admin Home page'
     },
+    {path:"", component:UserPageComponent, title:"Home Page"},
     {
       path: 'details/:id',
       component: DetailsComponent,
